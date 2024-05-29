@@ -1,17 +1,23 @@
 {
-    "name": "asantibanez/livewire-charts",
+    "name": "arukompas/livewire-charts",
     "description": "Livewire Charts",
     "keywords": [
         "asantibanez",
-        "livewire-charts"
+        "livewire-charts",
+        "arukompas"
     ],
-    "homepage": "https://github.com/asantibanez/livewire-charts",
+    "homepage": "https://github.com/arukompas/livewire-charts",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
             "name": "Andrés Santibáñez",
             "email": "santibanez.andres@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Arunas Skirius",
+            "email": "arunas@arunas.dev",
             "role": "Developer"
         }
     ],
