@@ -1,3 +1,9 @@
+# Livewire Charts
+
+This package allows you to add interactive data charts to your apps using Livewire. With a fluent api and built-in Livewire components, you can add charts in your app in no time. You can also add interactions and behaviors to enrich your users' experience. Line, Multiline, Pie, Tree, among other types of charts are ready to use and customized.
+
+[![Total Downloads](https://img.shields.io/packagist/dt/asantibanez/livewire-charts.svg?style=flat-square)](https://packagist.org/packages/asantibanez/livewire-charts)
+
 [![GitHub release](https://img.shields.io/github/release/asantibanez/livewire-charts.svg)](https://github.com/asantibanez/livewire-charts/releases/)
 
 ![Livewire Charts](https://banners.beyondco.de/Livewire%20Charts.png?theme=light&packageName=asantibanez%2Flivewire-charts&pattern=graphPaper&style=style_1&description=Neat+Livewire+Charts+for+your+Laravel+projects&md=1&fontSize=100px&images=chart-square-bar)
@@ -31,7 +37,7 @@ by the `@livewireChartsScripts` directive. More on this topic later.
 ## Requirements
 
 This package requires the following packages/libraries to work:
-- `Laravel Livewire v3` (https://livewire.laravel.com/)
+- `Laravel Livewire v3` or later (https://livewire.laravel.com/)
 - `Apex Charts` (https://apexcharts.com/)
 
 Please follow each package/library instructions on how to set them properly in your project.
@@ -47,6 +53,7 @@ Livewire Charts supports out of the box the following types of charts
 - Area Chart (`LivewireAreaChart` component)
 - Radar Chart (`LivewireRadarChart` component)
 - Tree Map Chart (`LivewireTreeMapChart` component)
+- Radial Chart (`LivewireRadialChart` component)
 
 Each one comes with its own "model" class that allows you to define the chart's data and render behavior. 
 - `LivewireLineChart` uses `LineChartModel` to set up data points, markers, events and other ui customizations. 
@@ -55,6 +62,7 @@ Each one comes with its own "model" class that allows you to define the chart's 
 - `LivewireAreaChart` uses `AreaChartModel` to set up data points, events and other ui customizations.
 - `LivewireRadarChart` uses `RadarChartModel` to set up data points, events and other ui customizations.
 - `LivewireTreeMapChart` uses `TreeMapChartModel` to set up data blocks, events and other ui customizations.
+- `LivewireRadialChart` uses `RadialChartModel` to set up data bars, events and other ui customizations.
 
 For example, to render a column chart, we can create an instance of `ColumnChartModel` and add some data to it
 ```php
@@ -82,7 +90,7 @@ With `$columnChartModel` at hand, we pass it to our `LivewireColumnChart` compon
 Next, include the `@livewireChartsScripts` directive next to your other app scripts
 
 ```html
-<livewire:scripts />
+@livewireScripts
 @livewireChartsScripts
 ```
 
@@ -106,6 +114,7 @@ LivewireCharts::pieChartModel();
 LivewireCharts::areaChartModel();
 LivewireCharts::radarChartModel();
 LivewireCharts::treeMapChartModel();
+LivewireCharts::radialChartModel();
 ```
 
 ## Enabling Interactions
@@ -247,6 +256,14 @@ for each type of chart.
 | withOnBlockClickEvent(string $eventName) | Event Name that will be fired when a block of the chart is clicked |
 | setDistributed(bool $distributed) | Set whether the chart uses distribution or not |
 
+### LivewireRadialChart
+
+| Method                                                                         | Description                                                      |
+|--------------------------------------------------------------------------------|------------------------------------------------------------------|
+| addBar(string $title, double $value, string $color = null, array $extras = []) | Adds a bar to the default series                                 |
+| withOnBarClickEvent(string $eventName)                                         | Event Name that will be fired when a bar of the chart is clicked |
+| showTotal()                                                                    | Show the total percetage to the graph                            |
+| hideTotal()                                                                    | Hides the total percetage to the graph                           |
 
 ## Advanced Usage - Integrating Scripts
 

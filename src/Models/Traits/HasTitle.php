@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Asantibanez\LivewireCharts\Models;
+namespace Asantibanez\LivewireCharts\Models\Traits;
 
 
 trait HasTitle
@@ -13,6 +13,11 @@ trait HasTitle
         $this->title = $title;
 
         return $this;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     protected function initTitle()
