@@ -13,8 +13,7 @@ class LivewireColumnChartTest extends TestCase
         return Livewire::test(LivewireColumnChart::class);
     }
 
-    /** @test */
-    public function can_build_component()
+    public function test_can_build_component()
     {
         //Act
         $component = $this->buildComponent();
@@ -23,8 +22,7 @@ class LivewireColumnChartTest extends TestCase
         $this->assertNotNull($component);
     }
 
-    /** @test */
-    public function should_emit_event_if_present()
+    public function test_should_emit_event_if_present()
     {
         //Arrange
         $component = $this->buildComponent();
