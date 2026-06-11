@@ -13,8 +13,7 @@ class LivewireRadarChartTest extends TestCase
         return Livewire::test(LivewireRadarChart::class);
     }
 
-    /** @test */
-    public function can_build_component()
+    public function test_can_build_component()
     {
         //Act
         $component = $this->buildComponent();

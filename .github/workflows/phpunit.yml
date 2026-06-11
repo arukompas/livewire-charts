@@ -6,6 +6,22 @@ jobs:
   phpunit:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: '8.2'
+            laravel: '^12.0'
+            testbench: '^10.0'
+          - php: '8.3'
+            laravel: '^13.0'
+            testbench: '^11.0'
+          - php: '8.4'
+            laravel: '^13.0'
+            testbench: '^11.0'
+
+    name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }}
+
     steps:
       - name: Cancel Previous Run
         uses: styfle/cancel-workflow-action@0.6.0
@@ -15,7 +31,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, exif, imagick, bcmath
           coverage: none
 
@@ -23,7 +39,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Composer dependencies
-        run: composer install --ignore-platform-reqs
+        run: |
+          set -euo pipefail
+          composer require --dev \
+            "laravel/framework:${{ matrix.laravel }}" \
+            "orchestra/testbench:${{ matrix.testbench }}" \
+            --no-interaction \
+            --no-update
+          composer update --with-all-dependencies --no-interaction
 
       - name: Run tests
         run: ./vendor/bin/phpunit
